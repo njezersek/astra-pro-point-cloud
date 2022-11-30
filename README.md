@@ -22,6 +22,8 @@ python3 main.py
 
 
 ## Detailed installation instructions
+
+### Linux
 This was tested on Ubuntu 22.
 
 ``` bash
@@ -84,4 +86,30 @@ sudo apt-get install qt-sdk openjdk-8-jdk openjdk-8-jre
 The script should work:
 ```
 python main.py
+```
+
+### Windows
+
+This was tested on Windows 10.
+
+Download the ["Orbbec Camera Driver for Windows"](https://dl.orbbec3d.com/dist/drivers/win32/astra-win32-driver-4.3.0.20.zip) from [www.orbbec3d.com](https://www.orbbec3d.com/index/download.html) (make sure to click the "more" button to find the download link). 
+
+Install the driver and reboot the computer. After that the the Astra Pro should be visible in the Device Manager under `Orbbec/ORBBEC Depth Sensor`.
+
+Download the ["Orbbec OpenNI SDK for Windows"](https://dl.orbbec3d.com/dist/openni2/v2.3.0.85/Orbbec_OpenNI_v2.3.0.85_windows_release.zip) and extract it. Find the `Win64-Release` folder and copy its contents to `C:\Program Files\Orbbec\OpenNI`.
+
+You can test if the camera is working by running the `NiViewer.exe` from the `OpenNI\tools\NiViewer` folder.
+
+To run the script you need to set the `OPENNI2_REDIST64` environment variable to the `OpenNI\sdk\libs` folder. You can do this by running the following command in the powershell:
+```powershell
+ $Env:OPENNI2_REDIST64="C:/Program Files/Orbbec/OpenNI/sdk/libs"
+```
+Or to make it permanent, run the following command in the powershell and restart the terminal:
+```powershell
+[Environment]::SetEnvironmentVariable("OPENNI2_REDIST64", "C:/Program Files/Orbbec/OpenNI/sdk/libs", "Machine")
+```
+
+Install the python dependencies:
+```bash
+python -m pip install -r requirements.txt
 ```
